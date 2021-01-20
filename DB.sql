@@ -80,9 +80,9 @@ INSERT INTO django_migrations VALUES(73,'diet','0017_auto_20210107_1455','2021-0
 INSERT INTO django_migrations VALUES(74,'diet','0018_auto_20210107_1506','2021-01-07 14:06:30.975221');
 INSERT INTO django_migrations VALUES(75,'diet','0019_auto_20210107_1528','2021-01-07 14:28:40.339042');
 CREATE TABLE IF NOT EXISTS `user_tariff` (`id` integer NOT NULL PRIMARY KEY AUTO_INCREMENT, `typeTariff` varchar(50) NOT NULL, `content` text NOT NULL, `price` varchar(10) NOT NULL, `duracion` varchar(3) NULL);
-INSERT INTO user_tariff VALUES(1,'price_1I6c5jC6JokXHGA57ZL37jzG','Trimestral','59.99','3');
-INSERT INTO user_tariff VALUES(2,'price_1I6o2HC6JokXHGA5dPPpQUvS','Semestral','49.99','6');
-INSERT INTO user_tariff VALUES(3,'price_1I6o2nC6JokXHGA55F67DhCa','Anual','39.99','12');
+INSERT INTO user_tariff VALUES(1,'API_tarifa','Trimestral','59.99','3');
+INSERT INTO user_tariff VALUES(2,'API_tarifa','Semestral','49.99','6');
+INSERT INTO user_tariff VALUES(3,'API_tarifa','Anual','39.99','12');
 INSERT INTO user_tariff VALUES(4,'Nada','Nada','0',NULL);
 CREATE TABLE IF NOT EXISTS `user_image_user` (`id` integer NOT NULL PRIMARY KEY AUTO_INCREMENT, `image_id` integer NOT NULL REFERENCES `user_image` (`id`), `user_id` varchar(255) NOT NULL REFERENCES `user_user` (`email`));
 INSERT INTO user_image_user VALUES(22,23,'flalonso17@esei.uvigo.es');
