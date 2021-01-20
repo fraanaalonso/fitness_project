@@ -1,0 +1,164 @@
+{% extends 'inicio.html'%}
+
+
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div id="iconos-centrales">
+        <a href="{% url 'misUsuarios' user.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+<div class="document-calculate">
+    <div id="textBox">
+    <h2>TMB para el usuario {{usuario.first_name}} {{usuario.last_name}}</h2>
+    </div>
+    <form method="POST" action="">
+
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-6">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" name="nombre" id="inputEmail4" value="{{usuario.first_name}}" placeholder="Nombre" readonly>
+        </div>
+
+        <div class="col-6">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" class="form-control" name="apellidos" value="{{usuario.last_name}}" id="inputPassword4" placeholder="Apellidos" readonly>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+        <label for="nombre">Peso</label>
+        <input type="text" class="form-control" name="weight" value="{{ficha.weight}}"readonly>
+        </div>
+
+        <div class="col-6">
+        <label for="apellidos">Altura</label>
+        <input type="text" class="form-control" name="height" value="{{ficha.height}}" readonly>
+        </div>
+
+        <div class="col-6">
+        <label for="apellidos">Somatotipo</label>
+        <input type="text" class="form-control" name="somatotipe" value="{{ficha.somatotipe}}" readonly>
+        </div>
+
+        <div class="col-6">
+        <label for="apellidos">Género</label>
+        <input type="text" class="form-control" name="somatotipe" value="{{ficha.gender}}" readonly>
+        </div>
+
+    </div>
+
+    
+    
+
+    </form>
+
+    <div style="text-align:center;">
+    <button id="tmb-in" class="btn btn-primary">Calcular TMB</button> | <button id="tmb-out" class="btn btn-primary">Ocultar TMB</button>
+    </div>
+   
+
+    <div id="formBox">
+    
+    
+
+        <div class="col-6">
+        <label for="tmb">TMB</label>
+        <input type="text" class="form-control" id="tmb" name="tmb-name" value="{{tmb}}" readonly>
+        </div>
+
+        <div class="col-6">
+        <label for="tmb">Tasa de Actividad</label>
+        <select id="mySelect" name="indice-name" class="form-control">
+        {% for key, value in coeficientes.items %}
+            <option id="valor" value="{{value}}">{{key}}</option>
+        {% endfor %}
+        </select>
+        </div>
+
+        <div id="button-calorie">
+        <button onclick="calculate();" id="normo-in" class="btn btn-primary">Mostrar Normocaloría</button> | <button id="normo-out" class="btn btn-primary">Ocultar Normocaloría</button>
+        </div>
+
+        
+        
+    </div>
+
+    
+    <div id="final-result">
+        <div class="col-6">
+        <label>Calorías Necesarias para {{usuario.first_name}} </label>
+        <input type="text" id="toret" class="form-control" readonly>
+        </div>
+        <div class="col-6">
+        <label>Ajuste Calórico</label>
+        <input type="number" id="cantidad-ajuste" value="0" class="form-control">
+        </div>
+        <br>
+        <div id="ajuste-button">
+        <button id="ajuste-in" class="btn btn-primary">Mostrar tipo de Ajuste</button> | <button id="ajuste-out" class="btn btn-primary">Ocultar tipo Ajuste</button>
+        </div>
+    </div>
+
+    
+        
+    
+
+    
+
+    
+    <div id="div-opcion">
+        <div class="col-6">
+            <label>Seleccione una opción</label>
+            <select id="defsuperselect" class="form-control">
+            <option value="1">Déficit</option>
+            <option value="2">Superávit</option>
+            </select>
+        </div>
+
+
+        <div id="button-calori">
+            <button id="mostrar-calorias" onclick="caloriasDieta();" class="btn btn-primary">Mostrar calorias dieta</button> | <button id="mostrar-calorias-out" class="btn btn-primary">Ocultar calorías dieta</button>
+        </div>
+    </div>
+
+
+    <div id="final-calc">
+    
+        <div class="col-6">
+        <label>Calorías Dieta</label>
+        <input type="text" id="calorias-dieta" class="form-control" readonly>
+        </div>
+
+        <form method="post" action="{% url 'tipos-dieta' usuario.username %}">
+        {% csrf_token %}
+        <input type="hidden" name="oculto" id="oculto">
+        <input type="hidden" name="usuario" value="{{usuario.username}}">
+        <input type="hidden" name="nombre" value="{{usuario.first_name}}">
+        <input type="hidden" name="apellidos" value="{{usuario.last_name}}">
+        
+        <button id="siguiente-paso" class="btn btn-primary"> Siguiente Paso </button>
+        </form> 
+    
+    </div>
+    
+
+
+    
+
+       
+    
+</div>
+    
+
+{% endblock %}

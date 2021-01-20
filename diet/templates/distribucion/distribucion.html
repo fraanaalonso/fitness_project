@@ -1,0 +1,100 @@
+{% extends 'inicio.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="content-table">
+
+    <h4><strong>Tipos de Dieta</strong></h4>
+    <table class="table table-hover table-bordered table-dark">
+        <tr class="bg-danger">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>% Hidratos de Carbono</th>
+            <th>% Proteínas</th>
+            <th>% Grasas</th>
+        </tr>
+        {% for tipo in tipos %}
+        <tr>
+            <td>{{tipo.name}}</td>
+            <td>{{tipo.description}}</td>
+            <td>{{tipo.hc_percentage}}</td>
+            <td>{{tipo.pr_percentage}}</td>
+            <td>{{tipo.gr_percentage}}</td>
+           
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+    <h4><strong>Dieta Seleccionada</strong></h4>
+    <table class="table table-hover table-bordered table-dark">
+        <tr class="bg-danger">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>% Hidratos de Carbono</th>
+            <th>% Proteínas</th>
+            <th>% Grasas</th>
+        </tr>
+        
+        <tr>
+            <td>{{tipe.name}}</td>
+            <td>{{tipe.description}}</td>
+            <td>{{tipe.hc_percentage}}</td>
+            <td>{{tipe.pr_percentage}}</td>
+            <td>{{tipe.gr_percentage}}</td>
+            
+        </tr>
+            
+    </table>
+
+
+    <br>
+    <hr>
+    <table class="table table-hover table-bordered table-dark">
+            <tr class="bg-info">
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Calorías Dieta</th>
+                <th>Tipo de Dieta</th>
+                <th>Kcal de Hidratos de Carbono</th>
+                <th>Kcal de Proteínas</th>
+                <th>Kcal de Grasas</th>
+                <th>Acciones</th>
+            </tr>
+            
+            <tr>
+                <td>{{cliente.first_name}}</td>
+                <td>{{cliente.last_name}}</td>
+                <td>{{cliente.email}}</td>
+                <th>{{calorias}}</th>
+                <td>{{tipe.name}}</td>
+                <td>{{hc_user}}</td>
+                <td>{{pr_user}}</td>
+                <td>{{gr_user}}</td>
+                <td>
+                    <form action="{% url 'planning' cliente.username tipe.id calorias%}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="type_diet" value="{{tipe.id}}">
+                        <input type="hidden" name="user" value="{{cliente.email}}">
+                        <input type="hidden" name="calorias" value="{{calorias}}">
+                        <input type="hidden" name="name" value="Dieta Cliente">
+                        <input type="hidden" name="visible" id="visible" value='0'>
+                        <button class="btn btn-danger" type="submit" >Crear Dieta</button>
+                    </form>
+                </td>
+            </tr>
+
+    </table>
+    </div>
+
+
+{% endblock %}

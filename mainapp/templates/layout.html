@@ -1,0 +1,121 @@
+<!-- 
+
+Author: Francisco López Alonso
+Creation date: 23/09/2020 18:39
+Last Update -
+
+-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <title>
+        {% block title %}
+
+        {{title}}
+
+        {% endblock %} 
+    </title>
+   
+</head>
+
+<body>
+
+    <section id="nav-barp">
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+			  <a class="navbar-brand" href="#"><strong><h1 style=" color: white; -webkit-text-stroke-width: 3px;-webkit-text-stroke-color: #000; font-size: 60px;">Bulk & Shred</h1></strong></a>
+
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+
+
+            
+
+            
+            <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}"><h2>Inicio</h2></a>
+            </li>
+
+
+            {% for page in pages %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'page' page.2 %}"><h2>{{page.1}}</h2></a>
+                    </li>
+            {% endfor %}
+
+            
+            
+
+			</ul>
+		    </div>
+
+		</nav>
+        
+    </section>
+
+    
+    <div class="content">
+        <div class="box">
+    
+
+        
+
+            <!---Creo bloques para hacer dinamico una parte de la pagina-->
+            {% block content %}
+            <!--Codigo que viene de templates-->
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer id="footer-principal">
+        <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 text-left">
+            <h6 class="text-muted lead">Contacto:</h6>
+            <h6 class="text-muted">
+            Test Test, 1<br>
+            País, Provincia<br>
+            Teléfono: xxxxxxx<br>
+            </h6>
+        </div>
+        <div class="col-xs-12 col-md-6">
+        <div class="pull-right">
+        <h6 class="text-muted lead">Nuestras Redes Sociales</h6>
+              <div class="redes-footer">
+                  <a href="https://www.facebook.com/"><img src="../media/icon/facebook-brands.svg" width="20" ></a>
+                  <a href="https://twitter.com/"><img src="../media/icon/twitter-brands.svg" width="20"></a>
+                  <a href="https://www.youtube.com/"><img src="../media/icon/youtube-brands.svg" width="20"></a>
+              </div>
+        </div>
+        <div class="row"> <p class="text-muted small text-right">{% now 'Y' %}-&copy</p></div>
+    </div>
+  </div>  
+</div>
+    </footer>
+
+</body>
+
+</html>

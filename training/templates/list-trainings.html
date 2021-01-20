@@ -1,0 +1,83 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+    {{title}}
+
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+    
+    <div class="title-content">
+    <h2><strong>{{title}}</strong></h2>
+    </div>
+
+    <div class="content-table">
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-success" style="width: 50%; margin: 0 auto;">
+                {{message}}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+    </div>
+
+    {% if sesion.grupo.id == 3 %}
+        <div id="iconos-centrales">
+            <a href="{% url 'asigned-users' trainer %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+        </div>
+    {% else %}
+        <div id="iconos-centrales">
+            <a href="{% url 'portal' sesion.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+        </div>
+    {% endif %}
+
+    
+    
+    <div class="content-table">
+    <table class="table table-hover table-bordered table-dark">
+    <thead>
+        <tr class="bg-danger">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Usuario</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for entreno in entrenos %}
+        <tr>
+            <td>{{entreno.name}}</td>
+            <td>{{entreno.description}}</td>
+            <td>{{entreno.user}}</td>
+            <td>{{entreno.fecha_inicio}}</td>
+            <td>{{entreno.fecha_fin}}</td>
+            <td>
+                <a href="{% url 'edit-training' entreno.id %}" style="color:#3DEFF7; font-size:20px;"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'data-training' usuario.username entreno.id %}" style="color:yellow; font-size:20px;"><i class="fas fa-arrow-right"></i></a>
+                <a href="{% url 'show-training' usuario.username entreno.id %}" style="color:Cornsilk;font-size:20px;"><i class="fas fa-table"></i></a>
+                <a href="{% url 'delete-training' usuario.username entreno.id %}" style="color:lightsalmon;font-size:20px;"><i class="fas fa-trash-alt"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    </div>
+
+
+
+    
+
+{% endblock %}

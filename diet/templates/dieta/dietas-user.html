@@ -1,0 +1,94 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    
+
+     <div class="content-table">
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+    </div>
+    <div class="title-content">
+    <h2><strong>Dietas de {{cliente.first_name}}, {{cliente.last_name }}</strong></h2>
+    </div>
+
+    {% if user.grupo.id == 3%}
+    <div id="iconos-centrales">
+        <a href="{% url 'misUsuarios' user.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+    {% else %}
+        <div id="iconos-centrales">
+        <a href="{% url 'portal' cliente.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+    {%endif%}
+    <div class="content-table"> 
+  <table class="table table-dark table-hover table-bordered">
+    <thead>
+        <tr class="bg-danger">
+            
+            <th>Usuario</th>
+            <th>Calorias</th>
+            <th>Calorias Hidratos de carbono</th>
+            <th>Calorias Proteinas</th>
+            <th>Calorias Grasas</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for dieta in dietas %}
+        <tr>
+            
+            <td>{{dieta.user_id}}</td>
+            <td>{{dieta.calorias}}</td>
+            <td>{{dieta.calorias_hc}}</td>
+            <td>{{dieta.calorias_pr}}</td>
+            <td>{{dieta.calorias_gr}}</td>
+            <td>{{dieta.fecha_inicio}}</td>
+            <td>{{dieta.fecha_fin}}</td>
+            <td>
+
+            {% if user.grupo_id == 3 %}
+            
+                <a href="{% url 'edit-diet-user' dieta.id dieta.user_id %}" style="color:lawngreen;"><i style="font-size:20px;" class="fas fa-edit"></i></a>
+                <a href="{% url 'erase-diet-user' dieta.id dieta.user_id %}" style="color:lightsalmon;"><i style="font-size:20px;" class="fas fa-trash-alt"></i></a>
+                <a href="{% url 'show-days' dieta.id dieta.user_id %}" style="color: #59D3F3;"><i style="font-size:20px;" class="fas fa-arrow-right"></i></a>
+                <a href="{% url 'detail-diet' dieta.id dieta.user_id %}" style="color: yellow;"><i style="font-size:20px;" class="far fa-eye"></i></a>
+                <a href="{% url 'list-complete' dieta.id dieta.user_id %}" style="color: #A8FF6B;"><i style="font-size:20px;" class="far fa-file-archive"></i></a>
+            {% else %}
+                    <a href="{% url 'detail-diet' dieta.id dieta.user_id %}" style="color: yellow;"><i style="font-size:20px;" class="far fa-eye"></i></a>
+                   <a href="{% url 'list-complete' dieta.id dieta.user_id %}" style="color: #A8FF6B;"><i style="font-size:20px;" class="far fa-file-archive"></i></a>         
+            {% endif %}
+            
+           
+            
+            </td>
+            
+        </tr>
+
+        {% endfor %}
+    </tbody>
+    </table>
+
+</div>
+    
+
+{% endblock %}

@@ -1,0 +1,30 @@
+<div class="page-1">  
+    
+
+                <!--precio-->
+
+            {% for tarifa in tarifas %}
+
+
+            
+            <div class="columns">
+            <ul class="price">
+                <li class="header">{{tarifa.content}}</li>
+                <li class="grey">{{tarifa.price}} €/mes</li>
+                <li>Entrenamientos Personalizados</li>
+                <li>Dietas Personalizadas</li>
+                <li>Contacto vía chat con el entrenador</li>
+                <li>Seguimiento gráfico de resultados</li>
+                <li class="grey"><a href="{% url 'pago' tarifa.id user.email %}" class="button">Contratar</a></li>
+            </ul>
+            </div>
+            
+
+             
+
+            {% endfor %}
+               
+            
+
+
+</div>

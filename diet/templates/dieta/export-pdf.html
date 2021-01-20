@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <style>
+            #table-diet td {
+            border-left: 1px solid;
+            border-bottom: 1px solid;
+            width: 25%;
+            background: snow;
+            font-size: 8;
+            font-weight: bold;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            
+            #table-diet th {
+                background: #DAE7FE;
+                border-right: 1px solid;
+                border-bottom: 1px solid;
+                border-left: 1px solid;
+                border-top: 1px solid;
+            }
+
+            #table-diet tr > th {
+                background: #DAE7FE;
+                width: 25%;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <h2>Dieta {{client.first_name}}, {{client.last_name}}</h2>
+        <table id="table-diet">
+
+
+        {% for key, value in dict.items %}
+            <th id="day-diet">
+                <h3>Día {{key}} </h3>
+            </th>
+                
+                {% for num, lista in value.items %}
+                <tr>
+                    <td>Comida {{num}}</td>
+                    <th>
+                        {% for item in lista %}
+                            Nombre: {{item.0}}<br>
+                            Gramos: {{item.1}}<br>
+                            Comentarios: {{item.2}}<br>
+                            
+                        
+                        <hr>
+                        {% endfor %}
+                    </th>
+                </tr>
+                {% endfor %}
+                
+        {% endfor %}
+    </table>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+{% extends 'inicio.html'%}
+
+
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div id="iconos-centrales">
+        <a href="{% url 'tipos-dieta' %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+    <div class="content-table"> 
+    <table class="table table-hover table-dark">
+    <tr>
+        <th>Nombre</th>
+        <td>{{detalle.name}}</td>
+    </tr>
+
+    <tr>
+        <th>Descripción</th>
+        <td>{{detalle.description}}</td>
+    </tr>
+
+    <tr>
+        <th>% Hidratos de Carbono</th>
+        <td>{{detalle.hc_percentage}}</td>
+    </tr>
+
+    <tr>
+        <th>% Proteínas</th>
+        <td>{{detalle.pr_percentage}}</td>
+    </tr>
+
+    <tr>
+        <th>% Grasas</th>
+        <td>{{detalle.gr_percentage}}</td>
+    </tr>
+
+    
+
+    </table>
+    </div>
+    
+{% endblock %}

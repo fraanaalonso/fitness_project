@@ -1,0 +1,26 @@
+{% extends 'inicio.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div id="iconos-centrales">
+            <a href="{% url 'mis-fotos' user.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+    <div class="form-style1">
+    <h2><strong>{{title}}</strong></h2>
+
+
+    <form method="POST" action="{% url 'add-photo' user.username %}" enctype="multipart/form-data">
+    {% csrf_token %}
+        {% crispy form %}
+    </form>
+    </div>
+
+
+{% endblock %}

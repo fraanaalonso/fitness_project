@@ -1,0 +1,28 @@
+
+{% load static %}
+{% block title %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        html, body{
+            background-color: #E7E7E7;
+        }
+    </style>
+    <title>Tarifas</title>
+
+    <div class="cabecera">
+        <div class="exit-app">
+        <a href="{% url 'logout' %}" style="color:black;font-size:40px;"><i class="fas fa-power-off"></i></a>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+ {% include 'users/list_tariff.html' %}
+
+{% endblock %}

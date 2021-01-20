@@ -1,0 +1,282 @@
+{% extends 'inicio.html'%}
+
+
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+{{% if  messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+
+        {% endfor %}
+
+{% endif %}}
+
+{% block content %}
+
+  {% if user.grupo_id == 1 %}
+    <div id="iconos-centrales">
+        <a href="{% url 'show-users' %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+  {% else %}
+    <div id="iconos-centrales">
+        <a href="{% url 'portal' user.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+  {% endif %}
+
+    
+
+
+ <div class="container-datail">
+    <div class="main-body">
+    
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{{ficha.photo.url}}" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4><strong>Login</strong>: {{username.username}}</h4>
+                      <h4><strong>Email</strong>: {{username.email}}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Nombre completo</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{username.first_name}} {{username.last_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Entrenador</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{username.is_trainer}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Teléfono Móvil</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.phone}}
+                    </div>
+                  </div>
+                  <hr>
+
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>País</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.country}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row" id="div-button-in">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Información</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <a class="btn btn-success" style="color: white" id="show-info-button">Mostrar más información</a>
+                    </div>
+                    <hr>
+                  </div>
+                <div id="show-info">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>¿Activo?</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{username.active}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>¿Staff?</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{username.staff}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>¿Superusuario?</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{username.is_superuser}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Grupo</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{username.grupo}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>DNI</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.dni}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Fecha de Nacimiento</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.date}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Peso</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.weight}} kg
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Altura</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.height}} cm
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Somatotipo</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.somatotipe}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Sexo</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.gender}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Horarios</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.timing}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Comidas</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.meals}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Patologías</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.patologies}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Deportes</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.sports}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Comentarios Adicionales</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.comments}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Plan Seleccionado</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ficha.plan}}
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Contraseña</strong></h6>
+                    </div>
+
+                    <div class="col-sm-9 text-secondary">
+                      <a href="{% url 'reset-password' username.username %}" class="btn btn-primary btn-sm">Cambiar Password</a>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0"><strong>Información</strong></h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <a class="btn btn-success" style="color: white" id="hide-info-button">Ocultar información</a>
+                  </div>
+                </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+    
+{% endblock %}

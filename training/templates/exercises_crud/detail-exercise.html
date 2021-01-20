@@ -1,0 +1,54 @@
+{% extends 'inicio.html'%}
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div id="iconos-centrales">
+        <a href="{% url 'show-exercises' %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+    <div class="content-table">
+    <table class="table table-hover table-bordered table-info">
+        <tr>
+            <th>Nombre</th>
+            <td>{{exercise.name}}</td>
+            
+        </tr>
+
+        <tr>
+            <th>Descripción</th>
+            <td>{{exercise.description}}</td>
+
+        </tr>
+
+        <tr>
+            <th>Categoría Ejercicio</th>
+            <td>{{exercise.categoria}}</td>
+
+        </tr>
+    </table>
+    </div>
+    <div class="file-container">
+    <div class="image-container">
+        <img src="{{exercise.image.url}}" width="500" height="350">
+    </div>
+
+    <div class="video-container">
+        <video width="500" height="350" controls>
+            <source src="{{ exercise.video.url }}" type="video/mp4">
+            
+        </video>
+    </div>
+    </div>
+
+    
+
+
+    
+
+{% endblock %}

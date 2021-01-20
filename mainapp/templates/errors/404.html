@@ -1,0 +1,34 @@
+
+{% extends h1 %}
+
+
+{% block title %}
+
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+
+
+    <div id="content-404">
+        404
+    </div>
+
+    <div id="text-404">
+        No se encontrado la página que solicitas ({{route}})
+        Volver a la <a href="{% url 'login' %}">página principal</a> 
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

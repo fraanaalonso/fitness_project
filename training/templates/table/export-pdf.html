@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+    <style>
+
+        @page{
+            size: A3;
+        }
+        #table-diet td {
+            border-left: 1px solid;
+            border-bottom: 1px solid;
+            width: 15%;
+            background: #206969;
+            font-size: 8;
+            font-weight: bold;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+            }
+            
+            #table-diet th {
+                background: #212323;
+                border-right: 1px solid;
+                border-bottom: 1px solid;
+                border-left: 1px solid;
+                border-top: 1px solid;
+                color: white;
+            }
+
+            #table-diet td > th {
+                background: #212323;
+                width: 800px;
+                color: white;
+            }
+    </style>
+    </head>
+    <body>
+
+        <h2>Entrenamiento {{client.first_name}}, {{client.last_name}}</h2>
+        <table id="table-diet">
+
+            {% for key, value  in dictionary.items  %}
+            
+                <th>    
+                    {{key}}
+                </th>
+                    {% for field in value  %}
+                    <tr>
+                        <td class="bg-info">Ejercicio {{field.5}}
+                        
+                            <th>
+                        
+                            Ejercicio: {{field.0}}<br>
+                            Series: {{field.1}} rondas<br>
+                            Repeticiones: {{field.3}} veces/ronda<br>
+                            Tiempo Descanso: {{field.2}} segundos<br>
+                            <hr>
+                            Comentarios Adicionales: {{field.4}}
+                        
+                            </th>
+                        
+                        
+                        </td>
+                    </tr>  
+                    {% endfor %}           
+                
+            
+            
+            {% endfor %}
+        
+        
+    </table>
+    </body>
+</html>

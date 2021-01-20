@@ -1,0 +1,25 @@
+<div class="pagination" style="text-align:center;">
+
+    {% if meals.has_previous %}
+        <a href="?page=1">&laquo; Primero -  </a>
+        <a href="?page={{meals.previous_page_number}}">
+          Anterior
+        </a>
+    {% endif %}
+
+    <span class="actual">
+        Pagina {{meals.number}} de {{meals.paginator.num_pages}}
+    </span>
+
+
+    {% if meals.has_next %}
+        <a href="?page={{meals.next_page_number}}">
+        Siguiente - 
+        </a>
+
+        <a href="?page={{meals.paginator.num_pages}}">  Última &raquo;</a>
+
+    {% endif %}
+
+
+</div>

@@ -1,0 +1,25 @@
+<div class="pagination" style="text-align:center;">
+
+    {% if exercises.has_previous %}
+        <a href="?page=1">&laquo; Primero -  </a>
+        <a href="?page={{exercises.previous_page_number}}">
+          Anterior
+        </a>
+    {% endif %}
+
+    <span class="actual">
+        Pagina {{exercises.number}} de {{exercises.paginator.num_pages}}
+    </span>
+
+
+    {% if exercises.has_next %}
+        <a href="?page={{exercises.next_page_number}}">
+        Siguiente - 
+        </a>
+
+        <a href="?page={{exercises.paginator.num_pages}}">  Última &raquo;</a>
+
+    {% endif %}
+
+
+</div>

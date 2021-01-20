@@ -1,0 +1,183 @@
+{% extends 'inicio.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div id="iconos-centrales">
+        <a href="{% url 'show-users' %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+</div>
+<div class="form-style1">
+<h2><strong>{{title}}</strong></h2>
+
+
+<form method="POST" action="{% url 'user-edit' usuario.email %}" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    
+    <h3>Datos Personales</h3>
+
+    <div class="row">
+
+        <div class="col-4">
+                {{form_user.username|as_crispy_field}}
+        </div>
+
+        <div class="col-4">
+                {{form_user.first_name|as_crispy_field}}
+            
+        </div>
+
+        <div class="col-4">
+            {{form_user.last_name|as_crispy_field}}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-4">
+            {{form_user.email|as_crispy_field}}
+        </div>
+
+
+        <div class="form-group col-6">
+            {{form_ficha.photo|as_crispy_field}}
+        </div>
+       
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+                {{form_ficha.dni|as_crispy_field}}
+        </div>
+        <div class="col-6">
+            {{form_ficha.phone|as_crispy_field}}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+            {{form_ficha.country|as_crispy_field}}
+        </div>
+        <div class="col-6">
+            {{form_user.grupo|as_crispy_field}}
+        </div>
+
+    </div>
+ 
+
+     <br>
+     <hr>
+
+    <h3>Datos Físicos y Alimenticios</h3>
+
+    <div class="row">
+        <div class="col-6">
+            {{form_ficha.date|as_crispy_field}}
+        </div>
+
+        <div class="col-6">
+            {{form_ficha.weight|as_crispy_field}}
+        </div>
+    </div>
+
+    <div class="row">
+
+
+    <div class="col-6">
+        {{form_ficha.height|as_crispy_field}}
+
+        
+
+    </div>
+
+
+    <div class="col-6">
+        {{form_ficha.gender|as_crispy_field}}
+        
+    </div>
+
+    <div class="col-6">
+        {{form_ficha.somatotipe|as_crispy_field}}
+    </div>
+
+
+    </div>
+
+    
+
+    <div class="row">
+
+    <div class="col-6">
+        {{form_user.is_trainer|as_crispy_field}}
+        
+
+    </div>
+
+
+    <div class="col-6">
+        {{form_user.active|as_crispy_field}}
+        
+
+    </div>
+
+
+    <div class="col-6">
+        {{form_user.staff|as_crispy_field}}
+        
+    </div>
+
+    <div class="col-6">
+        {{form_user.is_superuser|as_crispy_field}}
+    </div>
+
+    <div class="col-6">
+        {{form_ficha.plan|as_crispy_field}}
+    </div>
+
+
+    </div>
+        
+      
+       
+        <div class="form-group">
+        {{form_ficha.meals|as_crispy_field}}
+        
+        </div>
+
+
+
+        <div class="form-group">
+            {{form_ficha.timing|as_crispy_field}}
+        </div>
+
+        <div class="form-group">
+            {{form_ficha.sports|as_crispy_field}}
+        </div>
+
+        <div class="form-group">
+            {{form_ficha.patologies|as_crispy_field}}
+        </div>
+
+        <div class="form-group">
+            {{form_ficha.comments|as_crispy_field}}
+            
+        </div>
+        <input type="hidden" name="userID" value="{{usuario.email}}">
+        
+    
+
+ 
+        <button type="submit" class="btn btn-primary">Procesar Datos</button>    
+
+</form>
+</div>  
+{% endblock %}

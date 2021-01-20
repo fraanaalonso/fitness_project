@@ -1,0 +1,66 @@
+body,
+html {
+    height: 100%;
+    background: #E6E6FA !important;
+}
+
+.user_card {
+    width: 550px;
+    box-shadow: 0 4px 8px;
+    -webkit-box-shadow: 0 4px 8px;
+    -moz-box-shadow: 0 4px 8px;
+    height: 600px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #F08080;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.form_container {
+    margin-top: 20px;
+}
+
+.input-group-text {
+    background: #FF4500 !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0.25rem !important;
+}
+
+.div-alert {
+    width: 20%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.reset-div {
+    margin: 0 auto;
+    width: 40%;
+    padding: 20px;
+    height: 50%;
+    background: #F3A1B9;
+    margin-top: 150px;
+    padding-top: 140px;
+    border: 3px solid;
+    border-radius: 3px 3px;
+}
+
+.message-div-conf {
+    margin: 0 auto;
+    width: 40%;
+    padding: 20px;
+    font-size: 20px;
+    height: 40%;
+    background: #F3A1B9;
+    margin-top: 90px;
+    padding-top: 140px;
+    border: 3px solid;
+    border-radius: 3px 3px;
+}

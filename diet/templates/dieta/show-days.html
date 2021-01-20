@@ -1,0 +1,46 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div id="iconos-centrales">
+        <a href="{% url 'listar-dieta' dieta.user_id %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+<div class="content-table">
+  {%for fecha in fechas %} 
+    <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Día {{fecha}}</h4>
+    <hr>
+    <a href="{% url 'fill-diet' dieta.id dieta.user_id fecha %}"><i style="font-size: 80px; text-align:center; margin: 0 auto; color:red;" class="fas fa-arrow-alt-circle-right"></i></a>
+    </div>
+
+    <br>
+
+    {% endfor %} 
+</div>
+
+    
+
+{% endblock %}

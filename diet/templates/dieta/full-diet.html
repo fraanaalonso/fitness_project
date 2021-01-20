@@ -1,0 +1,90 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+
+{% endblock %}
+
+<style>
+
+</style>
+
+
+
+{% block content %}
+
+
+
+    <div id="iconos-centrales">
+        <a href="{% url 'listar-dieta' dieta.user_id %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+        <a href="{% url 'diet-pdf' dieta.id %}" style="color:green; font-size:40px;"><i class="far fa-file-pdf"></i></a>
+
+    </div>
+    <div class="title-content">
+        <h2><strong>Dieta de {{cliente.first_name}} {{cliente.last_name}}</strong></h2>
+    </div>
+
+    <div class="content-table">
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+    
+    <table class="table table-hover" id="table-diet">
+
+
+        {% for key, value in dict.items %}
+            <th id="day-diet">
+                <h3>Día {{key}} </h3>
+            </th>
+                
+                {% for num, lista in value.items %}
+                <tr>
+                    <td>Comida {{num}}</td>
+                    <th>
+                        {% for item in lista %}
+                            Nombre: {{item.0}}<br>
+                            Gramos: {{item.1}}<br>
+                            Comentarios: {{item.2}}<br>
+                            
+                        <div class="icons-diet">
+                            {% if item.1 == '-' %}
+                            
+                                <a href="{% url 'erase-meal-diet' item.4 %}" style="color:lightsalmon;font-size:20px;"><i class="fas fa-trash-alt"></i></a>
+
+                            {% else %}
+
+                                <a href="{% url 'erase-aliment-diet' item.4 %}" style="color:lightsalmon;font-size:20px;"><i class="fas fa-trash-alt"></i></a>
+
+                            {% endif %}
+
+                            {% if item.1 == '-' %}
+                            
+                                <a href="{% url 'edit-meal-diet' item.4 %}" style="color:green;font-size:20px;"><i class="fas fa-edit"></i></a>
+
+                            {% else %}
+
+                                <a href="{% url 'edit-aliment-diet' item.4 %}" style="color:green;font-size:20px;"><i class="fas fa-edit"></i></a>
+
+                            {% endif %}
+                        </div>
+                        <hr>
+                        {% endfor %}
+                    </th>
+                </tr>
+                {% endfor %}
+                
+        {% endfor %}
+    </table>
+
+    </div>
+    
+
+{% endblock %}

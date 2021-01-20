@@ -1,0 +1,287 @@
+{% extends 'inicio.html'%} {% load crispy_forms_tags %} {% block title %}
+{{title}}
+<h1>{{title}}</h1>
+
+{% endblock %} {% block content %}
+
+<div id="iconos-centrales">
+  <a href="{% url 'show-days' diet.id diet.user_id %}" style="color: red; font-size: 40px"><i class="fas fa-undo"></i></a>
+  <a href="{% url 'list-diet-day' diet.id diet.user_id date %}" style="color: #F2A3EF; font-size: 40px"><i class="fas fa-bars"></i></a>
+</div>
+
+
+<div class="content-table">
+<table class="table table-dark table-hover table-bordered">
+        <tr class="bg-info">
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Calorías Usuario (Límite)</th>
+            <th>Calorias Dieta</th>
+            <th>Calorías Hidratos de Carbono Usuario</th>
+            <th>Calorías Hidratos de Carbono Dieta</th>
+            <th>Calorías Proteínas Usuario</th>
+            <th>Calorías Proteínas Dieta</th>
+            <th>Calorías Grasas Usuario</th>
+            <th>Calorías Grasas Dieta</th>
+        </tr>
+        
+        <tr>
+            <td>{{cliente.first_name}}</td>
+            <td>{{cliente.last_name}}</td>
+            <td>{{diet.calorias}}</td>
+            <td>{{calorias_dieta}}</td>
+            <td>{{diet.calorias_hc}}</td>
+            <td>{{lista_macros.0}}</td>
+            <td>{{diet.calorias_pr}}</td>
+            <td>{{lista_macros.1}}</td>
+            <td>{{diet.calorias_gr}}</td>
+            <td>{{lista_macros.2}}</td>
+
+        </tr>
+
+    </table>
+
+{% if messages %} {% for message in messages %}
+
+<div class="alert alert-success">{{message}}</div>
+
+{% endfor %} {% endif %}
+
+
+<h2> Fecha: {{date}}</h2>
+<a id="button-add-aliment" class="btn btn-danger">Añadir Alimentos</a>
+<a id="button-add-meal" class="btn btn-danger">Añadir Comida</a>
+
+<br>
+<hr>
+</div>
+<div id="agregar-alimento">
+  <form method="POST" action="{% url 'fill-diet-aliment' diet.id diet.user_id date %}">
+  {% csrf_token %}
+
+    <table class="table table-dark table-hover table-bordered">
+
+    <thead>
+    <tr class="bg-danger">
+      <th class="th-sm">Nombre
+
+      </th>
+      <th class="th-sm">Hidratos
+
+      </th>
+      <th class="th-sm">Proteínas
+
+      </th>
+      <th class="th-sm">Grasas
+
+      </th>
+      <th class="th-sm">Opción
+
+      </th>
+    </tr>
+  </thead>
+
+    {% for alimento in alimentos %}
+
+    <tbody>
+
+    <tr>
+      <td>
+        {{alimento.name}}
+      </td>
+      <td>
+        {{alimento.gr_hc}}
+      </td>
+      <td>
+        {{alimento.gr_pr}}
+      </td>
+      <td>
+        {{alimento.gr_lip}}
+      </td>
+      <td>
+        <input type="radio" name="alimentos-radio" id="alimentos" value="{{alimento.id}}">
+      </td>
+        
+    </tr>
+    </tbody>
+    {% endfor %}
+    <tfoot>
+    <tr>
+      <th class="th-sm">Nombre
+
+      </th>
+      <th class="th-sm">Hidratos
+
+      </th>
+      <th class="th-sm">Proteínas
+
+      </th>
+      <th class="th-sm">Grasas
+
+      </th>
+      <th class="th-sm">Opción
+
+      </th>
+
+      </th>
+    </tr>
+  </tfoot>
+    </table>
+  {% include 'aliments/pagination.html'%}
+
+  <button class="btn btn-primary" id="button-add-data-aliment">Añadir datos</button>
+  <div id="add-info-formAliment">
+    {{formA.meal_number|as_crispy_field}}
+    {{formA.gramos|as_crispy_field}}
+    {{formA.comments|as_crispy_field}}
+    <input type="hidden" name="fecha-alimento" value="{{date}}">
+    <input type="submit" value"Añadir alimento">
+  </div>
+  </form>
+</div>
+
+<div id="agregar-comida">
+
+<form method="POST" action="{% url 'fill-diet' diet.id diet.user_id date %}">
+{% csrf_token %}
+
+  <table class="table table-dark table-hover table-bordered">
+
+    <thead>
+    <tr class="bg-danger">
+      <th class="th-sm">Nombre
+
+      </th>
+      <th class="th-sm">Hidratos
+
+      </th>
+      <th class="th-sm">Proteínas
+
+      </th>
+      <th class="th-sm">Grasas
+
+      </th>
+      <th class="th-sm">Opción
+
+      </th>
+    </tr>
+  </thead>
+    
+
+    {% for value in comidas %}
+    <tbody>
+    
+        <tr>
+        
+           <td>
+              {{value.name}}
+            </td>
+            <td>
+              {{value.hc_gramos}}
+            </td>
+            <td>
+              {{value.pr_gramos}}
+            </td>
+            <td>
+              {{value.gr_gramos}}
+            </td>
+            <td>
+              <input type="radio" name="comidas-radio" id="comidas" value="{{value.id}}">
+            </td>
+            
+        </tr>
+    </tbody>
+    {% endfor %}
+    <tfoot>
+    <tr>
+      <th class="th-sm">Nombre
+
+      </th>
+      <th class="th-sm">Hidratos
+
+      </th>
+      <th class="th-sm">Proteínas
+
+      </th>
+      <th class="th-sm">Grasas
+
+      </th>
+      <th class="th-sm">Opción
+
+      </th>
+
+      </th>
+    </tr>
+  </tfoot>
+  </table> 
+
+  <button class="btn btn-primary" id="button-add-data-meal">Añadir datos</button>
+  <div id="add-info-formMeal">
+
+    {{formM.meal_number|as_crispy_field}}
+    {{formM.comments|as_crispy_field}}
+    <input type="hidden" name="fecha-comida" value="{{date}}">
+    <input type="submit" value"Añadir comida">
+  </div>
+  </form>
+
+</div>
+
+<style>
+  #agregar-comida,
+  #agregar-alimento,
+  #add-info-formAliment,
+  #add-info-formMeal {
+    display: none;
+  }
+
+
+
+  
+</style>
+
+<script>
+  $("document").ready(function () {
+    $("#button-add-aliment").on("click", function () {
+      $("#agregar-alimento").fadeIn("fast");
+      $("#agregar-comida").fadeOut("fast");
+    });
+  });
+
+  $("document"). ready(function(){
+    $("#button-add-data-aliment").on("click", function(){
+
+      const inputs = document.querySelectorAll('input[name="alimentos-radio"]');
+      let selectedValue;
+      for (const input of inputs) {
+          if (input.checked) {
+              $("#add-info-formAliment").fadeIn("fast");
+          }
+      }
+      
+    });
+
+    $("#button-add-data-meal").on("click", function(){
+
+      const inputs = document.querySelectorAll('input[name="comidas-radio"]');
+      let selectedValue;
+      for (const input of inputs) {
+          if (input.checked) {
+              $("#add-info-formMeal").fadeIn("fast");
+          }
+      }
+      
+    });
+  });
+
+  $("document").ready(function () {
+    $("#button-add-meal").on("click", function () {
+      $("#agregar-alimento").fadeOut("fast");
+      $("#agregar-comida").fadeIn("fast");
+    });
+  });
+
+
+  
+</script>
+{% endblock %}

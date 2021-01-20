@@ -1,0 +1,171 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <title>Recopilación de Datos</title>
+    <style>
+        html, body{
+            background-color: #ECEAEA;
+        }
+        p{
+            font-size: 25px;
+            font-family: serif;
+        }
+    </style>
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="cabecera">
+        <div class="exit-app">
+        <a href="{% url 'logout' %}" style="color:black;font-size:40px;"><i class="fas fa-power-off"></i></a>
+        </div>
+    </div>
+    
+
+    <div class="aviso" role="alert">
+        <h2>Paso 1: Solicitud de Datos Físicos</h2>
+        <h2>Paso 2: Pago</h2>
+
+        <p>
+            En el Paso 1, debe rellenar el formulario que se le presenta a continuación. Asegúrese de que los datos introducidos
+            sean lo más exactos posibles.
+        </p>
+        <p>
+            En el Paso 2, debe realizar el pago de acuerdo a la cuota elegida
+
+        </p>
+    </div>
+
+
+
+<div class="page" role="alert">
+    <form method="post" action="" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+
+    <h3>Datos Personales</h3>
+
+    
+    
+
+    <div class="row">
+
+        <div class="col-4">
+                {{form_user.username|as_crispy_field}}
+        </div>
+
+        <div class="col-4">
+                {{form_user.first_name|as_crispy_field}}
+        </div>
+
+        <div class="col-4">
+            {{form_user.last_name|as_crispy_field}}
+        </div>
+    </div>
+
+    <div class="row">
+        
+
+        <div class="form-group col-6">
+            {{form_ficha.photo|as_crispy_field}}
+        </div>
+       
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+                {{form_ficha.dni|as_crispy_field}}
+        </div>
+        <div class="col-6">
+            {{form_ficha.phone|as_crispy_field}}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+            {{form_ficha.country|as_crispy_field}}
+        </div>
+
+    </div>
+
+     <br>
+     <hr>
+
+    <h3>Datos Físicos y Alimenticios</h3>
+
+    <div class="row">
+        <div class="col-6">
+            {{form_ficha.date|as_crispy_field}}
+        </div>
+
+        <div class="col-6">
+            {{form_ficha.weight|as_crispy_field}}
+        </div>
+    </div>
+
+    <div class="row">
+
+
+    <div class="col-6">
+        {{form_ficha.height|as_crispy_field}}
+    </div>
+
+
+    <div class="col-6">
+        {{form_ficha.gender|as_crispy_field}}
+        
+    </div>
+
+    <div class="col-6">
+        {{form_ficha.somatotipe|as_crispy_field}}
+    </div>
+
+
+    
+    </div>
+
+    <div class="col-24">
+    {{form_ficha.meals|as_crispy_field}}
+    </div>
+    <div class="col-24">
+        {{form_ficha.timing|as_crispy_field}}
+    </div>
+
+    <div class="col-24">
+        {{form_ficha.sports|as_crispy_field}}
+    </div>
+
+    <div class="col-24">
+        {{form_ficha.patologies|as_crispy_field}}
+    </div>
+
+    <div class="col-24">
+        {{form_ficha.comments|as_crispy_field}}
+    </div>
+    
+    <input type="hidden" name="userID" value="{{usuario.email}}">
+    
+    
+
+ 
+        
+    
+
+    <button type="submit" class="btn btn-primary">Procesar Datos</button>
+      
+
+    </form>
+</div>
+
+
+
+    
+{% endblock %}

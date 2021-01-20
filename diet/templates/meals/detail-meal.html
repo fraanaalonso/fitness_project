@@ -1,0 +1,54 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+    <div id="iconos-centrales">
+        <a href="{% url 'meals' %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>  
+
+    <div class="title-content">
+    <h2 class="title">{{title}}</h2>
+    </div>
+    <div class="content-table"> 
+    <table class="table table-hover table-bordered table-dark">
+    <tr>
+        <th>Comida</th>
+        <td>{{meal.name}}</td>
+    </tr>
+
+    <tr>
+        <th>Descripcion</th>
+        <td>{{meal.description}}</td>
+    </tr>
+
+    <tr>
+        <th>Gramos Hidratos de Carbono</th>
+        <td>{{meal.hc_gramos}}</td>
+    </tr>
+
+    <tr>
+        <th>Gramos Proteínas</th>
+        <td>{{meal.pr_gramos}}</td>
+    </tr>
+
+    <tr>
+        <th>Gramos Grasas</th>
+        <td>{{meal.gr_gramos}}</td>
+    </tr>
+
+   
+
+    </table>
+    </div>
+
+
+
+  
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'inicio.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div id="iconos-centrales">
+        <a href="{% url 'data-training' client.username entreno.id %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+    <div class="title-content">
+        <h2><strong>{{title}}</strong></h2>
+    </div>
+
+    {{form.errors}}
+    <div class="form-style1">
+        
+        <form method='POST' action="{% url 'add-exercise-training' client.username entreno.id fecha %}">
+            {% csrf_token %}
+
+            {{form.ejercicio|as_crispy_field}}
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="inputFormRow">
+                    <label>Repeticiones Serie</label>
+                        <div class="input-group mb-3">
+                            <input type="number" name="reps[]" class="form-control m-input" placeholder="Repeticiones" required autocomplete="off">
+                            <div class="input-group-append">                
+                                <button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="newRow"></div>
+                    <button id="addRow" type="button" class="btn btn-info">Añadir Repetición</button>
+                    <button id="finish-adding" type="button"  class="btn btn-danger">Finalizar</button>
+                </div>
+            </div>
+            <div id="div-add-exerciseInfo">
+                <div id="row-stop"></div>
+                {{form.comments|as_crispy_field}}
+                <input type="hidden" id="reps-input" name="reps-input" />
+                <input type="hidden" id="stop-input" name="stop-input" />
+                <input onclick="asignReps();"  type="submit" value="Enviar" />
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+
+<style>
+
+#div-add-exerciseInfo{
+    display:none;
+}
+
+</style>
+
+<script type="text/javascript">
+        
+        $("#addRow").click(function () {
+            let html = '';
+            html += '<div id="inputFormRow">';
+            html += '<label>Repeticiones Serie</label>';
+            html += '<div class="input-group mb-3">';
+            html += '<input type="number" name="reps[]" class="form-control m-input" placeholder="Repeticiones" required autocomplete="off">';
+            html += '<div class="input-group-append">';
+            html += '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
+            html += '</div>';
+            html += '</div>';
+            $('#newRow').append(html);
+           
+        });
+
+       
+
+        
+        $(document).on('click', '#removeRow', function () {
+            $(this).closest('#inputFormRow').remove();
+        });
+
+        
+        function asignReps() { 
+            var input = document.getElementsByName('reps[]');
+            var input2 = document.getElementsByName('stop[]'); 
+            var k = "";
+            var h = "";
+            for (var i = 0; i < input.length; i++) { 
+                var a = input[i]; 
+                k = k + a.value + "-"; 
+            }
+
+            for(var j = 0; j < input2.length; j++){
+                var b = input2[j];
+                h = h + b.value + "-";
+            }
+            document.getElementById("reps-input").value = k; 
+            document.getElementById("stop-input").value = h; 
+        }
+
+        
+
+
+
+
+
+</script>
+
+<script>
+
+        $("#finish-adding").on("click", function(){
+            let elem = $("#div-add-exerciseInfo");
+            const input = document.querySelectorAll("#removeRow");
+            let count = 0;
+            let html = '';
+            let s = 1;
+            if (elem.css("display") == 'none'){
+                $("#addRow").prop('disabled', 'disabled');
+                $(input).prop('disabled', 'disabled');
+                $("#div-add-exerciseInfo").fadeIn("fast");
+                $("#finish-adding").html("Atrás");
+                $(input).each(function (i) {
+                    count++;
+                });
+                for( let x = 0; x < count; x++ ){
+                    html += '<div id="inputFormRow">';
+                    html += '<label>Descanso ' + s + 'º' + ' serie (en segundos)</label>'
+                    html += '<div class="input-group mb-3">';
+                    html += '<input type="number" name="stop[]" class="form-control m-input" placeholder="Descanso entre series" required autocomplete="off">';
+                    html += '<div class="input-group-append">';
+                    html += '</div>';
+                    html += '</div>';
+                    s++;
+                }
+                $('#row-stop').append(html);
+            }
+            else{
+                elem.fadeOut("fast");
+                $("#addRow").prop('disabled', false);
+                $(input).prop('disabled', false);
+                $("#finish-adding").html("Finalizar");
+                count = 0;
+                $("#row-stop").html("");
+            }
+            
+        });
+
+        $('#finish-adding').on("click", function () {
+
+            
+        });
+
+        
+
+
+</script>
+
+    
+
+
+
+    
+
+{% endblock %}

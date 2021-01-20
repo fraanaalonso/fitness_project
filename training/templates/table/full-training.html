@@ -1,0 +1,68 @@
+{% extends 'inicio.html'%}
+{% block title %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div id="iconos-centrales">
+        <a href="{% url 'list-training' client.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+        <a href="{% url 'export-pdf' client.username entreno.id %}" style="color:green;font-size:40px;"><i class="far fa-file-pdf"></i></a>
+    </div>
+    
+
+    {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-warning">
+                    {{message}}
+                </div>
+
+            {% endfor %}
+
+    {% endif %}
+
+
+
+<div class="content-table">
+    <table class="table table-hover table-bordered table-dark">
+
+    {% for key, value  in dictionary.items  %}
+    
+        <th>    
+            {{key}}
+        </th>
+            {% for field in value  %}
+            <tr>
+                <td class="bg-info">Ejercicio {{field.5}}
+                
+                    <th>
+                
+                    Ejercicio: {{field.0}}<br>
+                    Series: {{field.1}}<br>
+                    Repeticiones: {{field.3}} veces/ronda<br>
+                    Descanso: {{field.2}} segundos <br>
+                    <hr>
+                    Comentarios Adicionales: {{field.4}}
+                
+                    <hr>
+                    <a href="{% url 'detail-exercise' field.0.id %}"><i style="font-size: 30px; color: red; text-align:right; margin: 0 auto;" class="fas fa-eye"></i></a>
+                    </th>
+                    
+                
+                </td>
+            </tr>  
+            {% endfor %}           
+        
+    
+    
+    {% endfor %}
+        
+        
+    </table>
+  </div>  
+{% endblock %}   
+   

@@ -1,0 +1,79 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="title-content">
+        <h2>{{title}}</h2>
+    </div>
+    <div id="iconos-centrales">
+        <a href="{% url 'listar-dieta' dieta.user %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+<div class="content-table"> 
+<table class="table table-hover table-dark">
+    <tr>
+        <th>Nombre</th>
+        <td>{{dieta.name}}</td>
+    </tr>
+
+    <tr>
+        <th>Descripción</th>
+        <td>{{dieta.description}}</td>
+    </tr>
+
+    <tr>
+        <th>Usuario</th>
+        <td>{{dieta.user}}</td>
+    </tr>
+
+    <tr>
+        <th>Calorías totales</th>
+        <td>{{dieta.calorias}}</td>
+    </tr>
+
+    <tr>
+        <th>Calorías Hidratos de Carbono</th>
+        <td>{{dieta.calorias_hc}}</td>
+    </tr>
+    <tr>
+        <th>Calorías Proteínas</th>
+        <td>{{dieta.calorias_pr}}</td>
+    </tr>
+    <tr>
+        <th>Calorías Grasas</th>
+        <td>{{dieta.calorias_gr}}</td>
+    </tr>
+
+    <tr>
+        <th>Fecha Inicio</th>
+        <td>{{dieta.fecha_inicio}}</td>
+    </tr>
+
+    <tr>
+        <th>Fecha Fin</th>
+        <td>{{dieta.fecha_fin}}</td>
+    </tr>
+
+    <tr>
+        <th>Creada por</th>
+        <td>{{dieta.created_by}}</td>
+    </tr>
+    <tr>
+        <th>¿Está disponible para el cliente?</th>
+        <td>{{dieta.visible}}</td>
+    </tr>
+
+    
+
+    </table>
+
+</div>   
+
+{% endblock %}

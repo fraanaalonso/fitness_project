@@ -1,0 +1,253 @@
+.pie-principal {
+    width: 100%;
+    height: 100px;
+    background-color: lightcoral;
+    margin-top: 600px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Karma", sans-serif;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+#content {
+    background-color: aliceblue;
+}
+
+.w3-bar-block .w3-bar-item {
+    padding: 20px
+}
+
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col,
+.gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.mb-3,
+.my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+
+.h-100 {
+    height: 100%!important;
+}
+
+.shadow-none {
+    box-shadow: none!important;
+}
+
+@import url('https://css.gg/add.css');
+
+/*Formularios*/
+
+form {
+    width: 70%;
+    margin: 0 auto;
+}
+
+form input,
+form label {
+    display: block;
+    padding: 5px;
+    padding-left: 0px;
+}
+
+form input[type="text"] {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+form input[type="submit"],
+form input [type="button"],
+form button {
+    padding: 10px;
+    margin-top: 5px;
+    background: green;
+    color: white;
+}
+
+form input[type="submit"]:hover,
+form input [type="button"]:hover,
+form button:hover {
+    cursor: pointer;
+    background: gold;
+    transition: 300ms all;
+}
+
+#formBox,
+#final-result,
+#div-opcion,
+#final-calc,
+#distribucion-macros {
+    width: 70%;
+    display: none;
+    margin: 0 auto;
+}
+
+.popup.active .overlay {
+    display: block;
+}
+
+.popup.active .content-popup {
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 300ms ease-in-out;
+}
+
+#button-calorie,
+#ajuste-button,
+#button-calori,
+#siguiente-paso {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#final-result {
+    display: none;
+    margin: 0 auto;
+    width: 70%;
+}
+
+#button-calorie {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#iconos-centrales {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.rojo {
+    background-color: red;
+    color: black;
+    text-align: left;
+    margin-top: 5px;
+    justify-content: center;
+}
+
+.caja {
+    font-family: sans-serif;
+    color: #ffffff;
+    background: #889ccf;
+    margin: 0 0 25px;
+    overflow: hidden;
+    padding: 20px;
+    width: 60%;
+    border: 3px solid black;
+}
+
+.table-exercise {
+    margin: 0 auto;
+    display: inline-block;
+    width: 220px;
+    border: 2px solid;
+    font-size: 20px;
+    background-color: coral;
+}
+
+#show-info {
+    display: none;
+}
+
+.popup .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    display: none;
+}
+
+.popup .content-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: #fff;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popup .close-popup {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: green;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+#content-404 {
+    font-size: 150px;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 400px;
+    font-weight: bold;
+}
+
+#text-404 {
+    font-size: 50px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    font-family: serif;
+    width: 1150px;
+}
+
+#text-404 a {
+    text-decoration: none;
+}

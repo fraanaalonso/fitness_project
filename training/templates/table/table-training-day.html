@@ -1,0 +1,69 @@
+{% extends 'inicio.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+    <div id="iconos-centrales">
+        <a href="{% url 'data-training' client.username entreno.id %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+    {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-warning">
+                    {{message}}
+                </div>
+
+            {% endfor %}
+
+    {% endif %}
+
+
+
+<div class="content-table">
+    <table class="table table-hover table-bordered table-dark">
+
+    {% for key, value  in dictionary.items  %}
+    
+        <th>    
+            {{key}}
+        </th>
+            {% for field in value  %}
+            <tr>
+                <td class="bg-info">Ejercicio {{field.5}}
+                
+                    <th>
+                
+                    Ejercicio: {{field.0}}<br>
+                    Series: {{field.1}} ronda<br>
+                    Repeticiones: {{field.3}} veces/ronda<br>
+                    Tiempo Descanso: {{field.2}} segundos<br>
+                    <hr>
+                    Comentarios Adicionales: {{field.4}}
+                    <br>
+
+                         <a href="{% url 'delete-exercise-day' client.username field.6 entreno.id key%}" style="color:lightsalmon;font-size:20px;"><i class="fas fa-trash-alt"></i></a>
+                
+                    </th>
+                
+                
+                </td>
+            </tr>  
+            {% endfor %}           
+        
+    
+    
+    {% endfor %}
+        
+        
+    </table>
+  </div>  
+{% endblock %}   
+   

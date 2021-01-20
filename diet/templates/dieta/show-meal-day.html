@@ -1,0 +1,59 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+    {{title}}
+<h1>{{title}}</h1>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div id="iconos-centrales">
+        <a href="{% url 'show-days' diet.id diet.user_id %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>
+
+
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+<div class="content-table">
+    <table class="table table-hover" id="table-diet">
+        <td>
+        <h3><strong>Día: {{date}}</strong></h3>
+        </td>
+        {% for key, value in dict.items %}
+        <tr>
+            <th>Comida {{key}}</th>
+            <td>
+                {% for item in value %}
+                    Nombre: {{item.0}}<br>
+                    Gramos: {{item.1}}<br>
+                    Comentarios: {{item.2}}<br>
+                    <hr>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+    
+
+    
+
+
+
+    
+
+{% endblock %}

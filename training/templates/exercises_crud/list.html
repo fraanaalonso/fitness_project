@@ -1,0 +1,21 @@
+{% extends 'inicio.html'%}
+
+{% block title %}
+    {{title}}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="title-content">
+    <h2 class="title">{{title}}</h2>
+    </div>
+    <div class="content-table"> 
+        {% include 'exercises_crud/show-exercises.html'%}
+    </div>
+        {% include 'exercises_crud/pagination.html'%}
+
+  
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'inicio.html'%}
+{% load crispy_forms_tags %}
+
+{% block title %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div id="iconos-centrales">
+        <a href="{% url 'calculate' cliente.username %}" style="color:red; font-size:40px;"><i class="fas fa-undo"></i></a>
+    </div>  
+
+<div class="tipos-dieta">
+
+<h2><strong>Distribución de macronutrientes</strong></h2>
+    
+
+    <table class="table table-dark table-hover table-bordered">
+        <tr class="bg-danger">
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Calorías Dieta</th>
+        </tr>
+        
+        <tr>
+            <td>{{cliente.first_name}}</td>
+            <td>{{cliente.last_name}}</td>
+            <td>{{calorias}}</td>
+        </tr>
+
+    </table>
+
+    <br>
+    <br>
+
+    <div id="iconos-centrales">
+        <a href="{% url 'tipos-dieta' %}" style="color: green; font-size:40px;"><i class="fas fa-plus"></i></a>
+    </div>
+    <table class="table table-dark table-hover table-bordered">
+        <tr class="bg-danger">
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>% Hidratos de Carbono</th>
+            <th>% Proteínas</th>
+            <th>% Grasas</th>
+            <th>Acciones</th>
+        </tr>
+        {% for tipo in tipos %}
+        <tr>
+            <td>{{tipo.name}}</td>
+            <td>{{tipo.description}}</td>
+            <td>{{tipo.hc_percentage}}</td>
+            <td>{{tipo.pr_percentage}}</td>
+            <td>{{tipo.gr_percentage}}</td>
+            <td>
+
+            <a href="{% url 'planning' cliente.username tipo.id calorias %}" style="color:lawngreen; font-size:20px;"><i class="fas fa-arrow-right"></i></a>
+            
+            </td>
+        </tr>
+        {% endfor %}
+</table>
+</div>
+
+
+
+
+
+
+
+    
+
+{% endblock %}
