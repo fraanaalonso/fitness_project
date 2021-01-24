@@ -217,6 +217,7 @@ def editTraining(request, id):
 @login_required(login_url="login")
 @not_admin
 @listT
+@notPay
 def listTraining(request, username):
     username = get_object_or_404(User, username=username)
     sesion = get_object_or_404(User, username=request.session['username'])
@@ -355,6 +356,7 @@ def showDayTraining(request, username, id, date):
 
 @login_required(login_url="login")
 @not_admin
+@notPay
 def showTableTraining(request, username, id):
     client = get_object_or_404(User, username=username)
     training = get_object_or_404(Training, user=client.email, pk=id)
@@ -407,6 +409,7 @@ def deleteExerciseDay(request, username, id, training, date):
 
 @login_required(login_url="login")
 @not_admin
+@notPay
 def exportPDF(request, username, id):
     client = get_object_or_404(User, username=username)
     training = get_object_or_404(Training, user=client.email, pk=id)

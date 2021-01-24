@@ -118,6 +118,7 @@ def detailTipos(request, id):
 @login_required(login_url="login")
 @not_admin
 @listDietC
+@notPay
 def listarDieta(request, email):
    
     cliente = get_object_or_404(User, pk=email)
@@ -169,6 +170,7 @@ def editDietUser(request, id, email):
 
 @login_required(login_url="login")
 @not_admin
+@notPay
 def detailDiet(request, id, email):
     try:
         login = User.objects.get(email=email)
@@ -637,6 +639,7 @@ def fillDietUserAliment(request, id, email, date):
 
 @login_required(login_url="login")
 @not_admin
+@notPay
 def listCompleteDiet(request, id, email):
     try:
         user = get_object_or_404(User, pk=email)
@@ -848,6 +851,7 @@ def edit_aliment_diet(request, id):
         })
 @login_required(login_url="login")
 @not_admin
+@notPay
 def export_pdf(request, id):
     dieta = get_object_or_404(Diet, pk=id)
     client = get_object_or_404(User, email=dieta.user)

@@ -461,7 +461,7 @@
     
     .price {
         list-style-type: none;
-        border: 3px solis black;
+        border: 3px solid black;
         margin: 0;
         padding: 0;
         -webkit-transition: 0.3s;

@@ -5,9 +5,11 @@ from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .decorators import *
+
 # Create your views here.
 @login_required(login_url="login")
 @mixChat
+@notPay
 def showUsers(request, username):
 
     try:
@@ -41,6 +43,7 @@ def showUsers(request, username):
 
 
 @login_required(login_url="login")
+@notPay
 def showChat(request, usender, ureceiver):
     try:
         usender = request.session['username']
@@ -95,6 +98,7 @@ def showChat(request, usender, ureceiver):
         return redirect('login')
 
 @login_required(login_url="login")
+@notPay
 def sendMessage(request, usender, ureceiver):
     try:
         sender = User.objects.get(username=usender)
