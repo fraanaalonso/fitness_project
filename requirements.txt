@@ -34,7 +34,7 @@ python-stdnum==1.15
 pytz==2020.5
 requests==2.25.1
 six==1.15.0
-sqlparse==0.4.1
+sqlparse==0.4.2
 stripe==2.55.1
 tinycss2==1.1.0
 Twisted @ file:///C:/paquetes/Twisted-20.3.0-cp39-cp39-win_amd64.whl
